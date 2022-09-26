@@ -78,11 +78,6 @@ class Database():          #Criando um objeto para fazer a ligação com o banco
         except:
             pass
 
-    def jogar():
-        print("*********************************")
-        print("***Bem vindo ao Sistema de Notas***")
-        print("*********************************")
-
 
 if __name__ == "__main__":
 
