@@ -50,7 +50,6 @@ class Database():          #Criando um objeto para fazer a ligação com o banco
             self.connection.commit()
         except:
             print("fazer conexão")
-    
 
 
     def check_user(self, user, password):
@@ -77,7 +76,6 @@ class Database():          #Criando um objeto para fazer a ligação com o banco
             return "Sem acesso"
         except:
             pass
-
 
 if __name__ == "__main__":
 
