@@ -1,19 +1,19 @@
 import sqlite3
 
 
-
-class Database():          #Criando um objeto para fazer a ligação com o banco de Dados 
-    def __init__(self, name = "system.db") -> None:
+#Criando um objeto para fazer a ligação com o banco de Dados 
+class Database():          
+    def __init__(self, name = "dataframe.db") -> None:                  #iniciando o banco de dados
         self.name = name
 
-    def conecta(self):
-        self.connection = sqlite3.connect(self.name)
+    def conecta(self):                      #criando uma def que acessa o banco de dados
+        self.connection = sqlite3.connect(self.name) 
 
-    def close_connection(self):
-        try:
+    def close_connection(self):             #fechando a conexão ao banco de dados
+        try:                                #tentar fechar (caso tenha erro)
             self.connection.close()
         except:
-            pass
+            pass                            #caso der o erro passar
 
 
 
@@ -26,56 +26,15 @@ class Database():          #Criando um objeto para fazer a ligação com o banco
                 
                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
-                    user TEXT UNIQUE NOT NULL,
-                    password TEXT NOT NULL,
-                    acess TEXT NOT NULL
+                    nota_1 TEXT NOT NULL,
+                    nota_2 TEXT NOT NULL,
+                    nota_3 TEXT NOT NULL,
 
                 );
 
             """)
         except AttributeError:
-            print("do connection")
-
-
-
-    def insert_user(self, name, user, password, acess):
-
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute("""
-            
-                INSERT INTO users(name, user, password, acess) VALUES(?,?,?,?)
-
-            """(name, user, password, acess))
-            self.connection.commit()
-        except:
-            print("fazer conexão")
-
-
-    def check_user(self, user, password):
-
-        try:
-
-            cursor = self.connection.cursor()
-            cursor.execute("""
-
-                SELECT * FROM users;
-
-            """)
-
-            for linha in cursor.fet():
-                if linha[2].upper() == user.upper() and linha[3] == password and linha[4] == "Administrador":
-                    return "Administrador"
-                    break
-
-                elif linha[2].upper() == user.upper() and linha[3] == password and linha[4] == "Usuário":
-                    return "user"
-                
-                else:
-                    continue
-            return "Sem acesso"
-        except:
-            pass
+            print("faça conexão")
 
 if __name__ == "__main__":
 
@@ -83,3 +42,17 @@ if __name__ == "__main__":
     db.conecta()
     db.create_table_users()
     db.close_connection
+
+
+    def insert_user(self, name, nota_1, nota_2, nota_3,acess):             #criando o
+
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+            
+            INSERT INTO users(name, user, password, acess) VALUES(?,?,?,?)
+
+        """(name, user, password, acess))
+            self.connection.commit()
+        except:
+            print("fazer conexão")
