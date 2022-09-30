@@ -50,8 +50,16 @@ class Database():
             self.connection.commit()
         except:
             print("fazer conexão")
+            
 
+  def subscribe_datas():      #Criando a função de input de dados para o dataframe
 
+        id = int(input("Digite o ID da materia: "))
+        name = input("Digite o nome do Aluno: ")
+        prova = int(input("Digite qual prova é: "))
+        nota = float(input("Digite a nota do Aluno: "))
+        
+        
 
 if __name__ == "__main__":
 
