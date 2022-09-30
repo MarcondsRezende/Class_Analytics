@@ -17,7 +17,7 @@ class Database():
 
 
 
-    def create_table_users(self):       #Criando uma tabela onde será armazenada os dados de cada aluno
+    def create_table_data(self):       #Criando uma tabela onde será armazenada os dados de cada aluno
         try:
             cursor = self.connection.cursor()
             cursor.execute("""
@@ -26,9 +26,9 @@ class Database():
                 
                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
-                    nota_1 TEXT NOT NULL,
-                    nota_2 TEXT NOT NULL,
-                    nota_3 TEXT NOT NULL,
+                    prova TEXT NOT NULL,
+                    nota TEXT NOT NULL,
+                    data TEXT NOT NULL
 
                 );
 
@@ -36,23 +36,26 @@ class Database():
         except AttributeError:
             print("faça conexão")
 
+
+    def insert_table_data(self, name, prova, nota, data):             #criando o metodo para inserir dados no dataframe
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+
+            INSERT INTO users(id, name, nota_1, nota_2, nota_3, nota_4) VALUES(?,?,?,?)
+
+        """,(id, name, prova, nota, data)
+
+        )
+            self.connection.commit()
+        except:
+            print("fazer conexão")
+
+
+
 if __name__ == "__main__":
 
     db = Database()
     db.conecta()
-    db.create_table_users()
+    db.create_table_data()
     db.close_connection
-
-
-    def insert_user(self, name, nota_1, nota_2, nota_3,acess):             #criando o
-
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute("""
-            
-            INSERT INTO users(name, user, password, acess) VALUES(?,?,?,?)
-
-        """(name, user, password, acess))
-            self.connection.commit()
-        except:
-            print("fazer conexão")
